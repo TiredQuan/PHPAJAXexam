@@ -8,7 +8,6 @@ if (empty($_SESSION['teacher'])) {
 
 
     include 'connect.php';
-    include 'add.php';
 
 $sql = "SELECT * FROM sinhvien";
 $result = mysqli_query($connect,$sql);
@@ -33,7 +32,7 @@ $result = mysqli_query($connect,$sql);
         <div class="modal-dialog modal-xl">
         <div class="modal-content p-5">
             <div class="model-body">
-                <form method="POST">
+                <div>
                             <div class="mb-3">
                                 <label for="fullname" class="form-label">Fullname</label>
                                 <input type="text" class="form-control" id="fullname" placeholder="Nguyễn Văn A" name="fullname" autocomplete="off">
@@ -58,50 +57,14 @@ $result = mysqli_query($connect,$sql);
                                 <input type="date" placeholder="dd-mm-yyyy" class="form-control" id="birthday" name="birthday">
                             </div>
                             </div>
-                            <div class="d-grid"><button type="submit" name="submit" class="btn btn-primary" onclick="adduser()">Add Student</button></div>
-                        </form>
+                            <button name="submit" class="btn btn-primary" onclick="adduser()">Add Student</button>
+                            <button class="btn btn-danger" data-bs-dismiss='modal'>Close</button>
+                        </div>
             </div>
         </div>
         </div>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Full name</th>
-                <th scope="col">Class</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Birthday</th>
-                <th scope="col" colspan="2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-            if($result){
-                while($row=mysqli_fetch_assoc($result)){
-                    $id=$row['id'];
-                    $fullname=$row['fullname'];
-                    $class=$row['class'];
-                    $gender=$row['gender'];
-                    $birthday=$row['birthday'];
-                    $genderStr = $gender ? 'Female' : 'Male';
-                    echo "<tr>
-                    <th scope='row'>$id</th>
-                    <td>$fullname</td>
-                    <td>$class</td>
-                    <td>$genderStr</td>
-                    <td>$birthday</td>
-                    <td><button class='btn btn-primary'><a class='text-light text-decoration-none' href='./edit.php?editid=$id'>Edit</a></button></td>
-                    <td><button class='btn btn-danger'><a class='text-light text-decoration-none' href='./delete.php?deleteid=$id'>Delete</a></button></td>
-                    </tr>";
-                }
-            } else{
-                die(mysqli_error($connect));
-            }
-            ?>
-                
-            </tbody>
-        </table>
+        <div id="dataTable"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -109,14 +72,15 @@ $result = mysqli_query($connect,$sql);
 
 
         function displayData(){
-            //Finish this
+            var displayData=true;
             $.ajax({
-                type: "method",
-                url: "url",
-                data: "data",
-                dataType: "dataType",
-                success: function (response) {
-                    
+                type: "POST",
+                url: "display.php",
+                data: {
+                    displaySend:displayData
+                },
+                success: function (data,status) {
+                    $('#dataTable').html(data);
                 }
             });
         }
@@ -136,12 +100,12 @@ $result = mysqli_query($connect,$sql);
                     sendGender: addGender,
                     sendBirthday: addBirthday,
                 },
-                dataType: "dataType",
                 success: function (data,status) {
-                    console.log(status)
+                    displayData()
                 }
             });
         }
+        displayData()
     </script>
 </body>
 </html>
