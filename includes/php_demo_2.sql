@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2022 at 10:16 AM
+-- Generation Time: Nov 21, 2022 at 03:36 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -40,14 +40,10 @@ CREATE TABLE `sinhvien` (
 --
 
 INSERT INTO `sinhvien` (`id`, `fullname`, `class`, `gender`, `birthday`) VALUES
-(1, 'Asalfdk', 'asdf', 1, '2000-05-31'),
-(2, 'asdf', 'asdf', 0, '0000-00-00'),
-(9, 'asfd', 'asfd', 1, '1000-03-21'),
-(10, 'asfd', 'asfd', 1, '1000-03-21'),
 (11, 'asfd', 'asfd', 1, '1000-03-21'),
-(12, 'asfd', 'asfd', 1, '1000-03-21'),
 (13, 'asfd', 'asfd', 1, '1000-03-21'),
-(14, 'asfd', 'asfd', 0, '1000-03-21');
+(22, 'B', 'asdfsa', 1, '2002-12-02'),
+(30, 'asdfasf', 'sadfasf', 0, '1000-02-20');
 
 -- --------------------------------------------------------
 
@@ -71,7 +67,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `fullname`, `username`, `gender`, `role`, `password`) VALUES
 (1, 'Quân', 'admin', 'male', 'teacher', '123'),
 (2, 'Quân', 'admin1', 'male', 'teacher', '123456'),
-(3, 'Dave', 'student', 'female', 'student', '123');
+(3, 'Dave', 'student', 'female', 'student', '123'),
+(4, 'sakjfhaslkfhk', 'student1', 'male', 'student', '1231');
 
 --
 -- Indexes for dumped tables
@@ -97,13 +94,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `sinhvien`
 --
 ALTER TABLE `sinhvien`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
