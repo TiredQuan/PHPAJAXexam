@@ -5,8 +5,8 @@
     }
     include 'connect.php';
     if(isset($_POST['updateid'])){
-        $id = $_POST['updateid'];
-        $sql = "SELECT * FROM sinhvien WHERE id=$id";
+        $updateid = $_POST['updateid'];
+        $sql = "SELECT * FROM sinhvien WHERE id=$updateid";
         $result = mysqli_query($connect,$sql);
         $responce=array();
         while($row = mysqli_fetch_assoc($result)){
@@ -21,13 +21,13 @@
 
     if(isset($_POST['hiddendata'])){
         $id=$_POST['hiddendata'];
-        $updateFullname=$_POST['updatefullname'];
-        $updateClass=$_POST['updateclass'];
-        $updateGender=$_POST['updategender'];
-        $updateBirthday=$_POST['updatebirthday'];
+        $fullname=$_POST['updatefullname'];
+        $class=$_POST['updateclass'];
+        $gender=$_POST['updategender'];
+        $birthday=$_POST['updatebirthday'];
 
 
-        $sql="update sinhvien set fullname=$updateFullname ,class=$updateClass ,gender=$updateGender ,birthday=$updateBirthday where id=$id";
-        $result=mysqli_query($connect,$sql);
+        $sql="UPDATE sinhvien SET fullname=$fullname ,class=$class ,gender=$gender ,birthday=$birthday WHERE id=$id";
+        $result=mysqli_query($connect,$sql2);
     }
     ?>

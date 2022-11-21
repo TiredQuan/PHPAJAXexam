@@ -85,7 +85,7 @@ $result = mysqli_query($connect,$sql);
                                         <label class="form-check-label" for="nam">Male</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender" id="nu" value="1">
+                                        <input class="form-check-input" type="radio" name="updategender" id="nu" value="1">
                                         <label class="form-check-label" for="nu">Female</label>
                                     </div>
                                 </div>
@@ -94,9 +94,9 @@ $result = mysqli_query($connect,$sql);
                                 <input type="date" placeholder="dd-mm-yyyy" class="form-control" id="updatebirthday" name="birthday">
                             </div>
                             </div>
-                            <button name="submit" class="btn btn-primary" onclick="edituser()">Edit Student</button>
+                            <button name="submit" class="btn btn-primary" onclick="editUser()">Edit Student</button>
                             <button class="btn btn-danger" data-bs-dismiss='modal'>Close</button>
-                            <input type="hidden" id="hiddenData">
+                            <input type="hidden" id="hiddendata">
                         </div>
             </div>
             </div>
@@ -161,8 +161,7 @@ $result = mysqli_query($connect,$sql);
         function getDetails(studentid){
             $('#hiddenData').val(studentid);
             $.post("edit.php",{updateid:studentid},function(data,status){
-                var userid=JSON.parse(data
-                )
+                var userid=JSON.parse(data)
                 $('#updatefullname').val(userid.fullname)
                 $('#updateclass').val(userid.class)
                 $('input[name="updategender"]').val(userid.gender)
@@ -170,20 +169,18 @@ $result = mysqli_query($connect,$sql);
             })
             $('#editStudent').modal('show')
         }
-        function edituser(){
-            var updateFullname=$('updatefullname').val()
-            var updateClass=$('updateclass').val()
-            var updateGender=$('input[name="updategender"]:checked').val()
-            var updateBirthday=$('updatebirthday').val()
-            var hiddenData=$('#hiddenData').val()
-
-            $.post('edit.php',{
-                updatefullname:updateFullname,
-                updateclass:updateClass,
-                updategender:updateGender,
-                updatebirthday:updateBirthday,
-                hiddendata:hiddenData,
-
+        function editUser(){
+            var updatefullname=$('#updatefullname').val()
+            var updateclass=$('#updateclass').val()
+            var updategender=$('input[name="updategender"]:checked').val()
+            var updatebirthday=$('#updatebirthday').val()
+            var hiddendata=$('#hiddendata').val()
+            $.post("edit.php",{
+                updatefullname:updatefullname,
+                updateclass:updateclass,
+                updategender:updategender,
+                updatebirthday:updatebirthday,
+                hiddendata:hiddendata
             },function(data,status){
                 displayData()
             })
