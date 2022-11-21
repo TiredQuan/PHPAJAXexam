@@ -28,8 +28,8 @@ if(isset($_POST['displaySend'])){
         <td>$class</td>
         <td>$genderStr</td>
         <td>$birthday</td>
-        <td><button class='btn btn-primary'><a class='text-light text-decoration-none' href='./edit.php?editid=$id'>Edit</a></button></td>
-        <td><button class='btn btn-danger'><a class='text-light text-decoration-none' href='./delete.php?deleteid=$id'>Delete</a></button></td>
+        <td><button class='btn btn-primary'><a class='text-light text-decoration-none' >Edit</a></button></td>
+        <td><button class='btn btn-danger'><a class='text-light text-decoration-none' onclick='deleteStudent($id)'>Delete</a></button></td>
         </tr>";
     } //change the EDIT button aswell as the DELETE
     $table.="</tbody>

@@ -4,8 +4,8 @@
         die("Not a Teacher/Admin");
     }
     include 'connect.php';
-    if(isset($_GET['deleteid'])){
-        $id = $_GET['deleteid'];
+    if(isset($_POST['deleteSend'])){
+        $id = $_POST['deleteSend'];
         $sql = "DELETE FROM sinhvien WHERE id=$id";
         $result = mysqli_query($connect,$sql);
         if($result){
